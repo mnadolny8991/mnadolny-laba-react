@@ -14,21 +14,23 @@
     <main>
         <header><h1>Contact Me</h1></header>
         <form action="#">
-            <label for="name">Full name*</label>
+            <label id="full-name-label">Full name*</label>
             <input 
                 type="text" 
-                id="name"
+                id="first-name"
                 name="first_name"
                 placeholder="Your first name..."
-                min="2"
+                minlength="2"
+                aria-labelledby="full-name-label"
                 required
             >
             <input 
                 type="text" 
-                id="name"
+                id="last-name"
                 name="last_name"
                 placeholder="Your last name..."
-                min="2"
+                minlength="2"
+                aria-labelledby="full-name-label"
                 required
             >
             <br>
@@ -316,10 +318,10 @@
     </main>
     <hr>
     <footer>
-        <a href="#"><img src="./assets/icons/facebook-dark.svg" alt="my fb" width="32px"></a>
-        <a href="#"><img src="./assets/icons/instagram-white.svg" alt="my instagram" width="32px"></a>
-        <a href="#"><img src="./assets/icons/linkedin-dark.svg" alt="my linkedin" width="32px"></a>
-        <a href="#"><img src="./assets/icons/twitter-dark.svg" alt="my twitter" width="32px"></a>
+        <a href="#"><img src="./assets/icons/facebook-dark.svg" alt="my fb" width="32"></a>
+        <a href="#"><img src="./assets/icons/instagram-white.svg" alt="my instagram" width="32"></a>
+        <a href="#"><img src="./assets/icons/linkedin-dark.svg" alt="my linkedin" width="32"></a>
+        <a href="#"><img src="./assets/icons/twitter-dark.svg" alt="my twitter" width="32"></a>
     </footer>
 </body>
 </html>
