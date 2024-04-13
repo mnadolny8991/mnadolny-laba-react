@@ -12,32 +12,24 @@ button, input[type="submit"], input[type="reset"] {
 	outline: inherit;
 }
 
-.b-light {
+.light-theme {
     background-color: #E9EBEC;
+
+    --pri-text-color: #3D3D3D;
+    --sec-text-color: #575757;
+
+    --pri-color: #FFFFFF;
+    --sec-color: #FBD144;
 }
 
-.b-dark {
+.dark-theme {
     background-color: #0C151D;
-}
 
-.main-text {
-    color: #3D3D3D;
-}
+    --pri-text-color: #F1F2F4;
+    --sec-text-color: #A3ABB2;
 
-.secondary-text {
-    color: #575757;
-}
-
-.main-color {
-    background-color: #FFFFFF;
-}
-
-.secondary-color {
-    background-color: #FBD144;
-}
-
-.teriary-color {
-    background-color: #D7D7D7;
+    --pri-color: #171F26;
+    --sec-color: #FFE071;
 }
 
 /* move this to the other file */
@@ -49,17 +41,18 @@ button, input[type="submit"], input[type="reset"] {
     padding: 2rem;
 }
 
-.btn-round {
+.btn-switch {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 80px;
     height: 80px;
     border-radius: 40px;
+    background-color: var(--pri-color);
 }
 
-.btn-round:hover {
-    background-color: #D7D7D7;
+.btn-switch:hover {
+    background-color: var(--sec-color);
     transition: .3s;
 }
 
