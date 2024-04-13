@@ -1,3 +1,32 @@
 * {
    box-sizing: border-box; 
 }
+
+.b-light {
+    background-color: #E9EBEC;
+}
+
+.b-dark {
+    background-color: #0C151D;
+}
+
+.main-text {
+    color: #3D3D3D;
+}
+
+.secondary-text {
+    color: #575757;
+}
+
+.main-color {
+    background-color: #FFFFFF;
+}
+
+.secondary-color {
+    background-color: #FBD144;
+}
+
+.teriary-color {
+    background-color: #D7D7D7;
+}
+
