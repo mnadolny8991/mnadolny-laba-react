@@ -94,7 +94,6 @@ p {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin: 2rem;
 }
 
 .socials {
@@ -114,7 +113,6 @@ p {
     display: flex;
     justify-content: center;
     gap: 4rem;
-    margin: 2rem;
 }
 
 .profile-fact {
@@ -132,8 +130,7 @@ p {
     flex-direction: row;
     gap: 2rem;
     justify-content: center;
-    align-items: center;
-    margin: 2rem;   
+    align-items: center;  
 }
 
 .profile-buttons__button {
@@ -151,7 +148,6 @@ p {
 }
 
 .tabs-buttons {
-    margin: 2rem;
     background-color: var(--pri-color);
     padding: 0.5rem;
     border-radius: 10px;
@@ -169,12 +165,15 @@ p {
 }
 
 .tabs-content {
-    margin: 2rem;
     display: flex;
     flex-wrap: wrap;
     row-gap: 1rem;
     column-gap: 1.5rem;
     width: 100%;
     justify-content: center;
+}
+
+.footer {
+    margin: 3rem;
 }
 
