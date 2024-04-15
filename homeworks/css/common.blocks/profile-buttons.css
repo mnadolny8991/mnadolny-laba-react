@@ -1,0 +1,22 @@
+@import url('../main.css');
+
+.profile-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+.profile-buttons__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 290px;
+    height: 80px;
+}
+
+.profile-buttons__button_download {
+    gap: 1rem;
+    background-color: var(--sec-color);
+    color: #3D3D3D;
+}
