@@ -38,6 +38,7 @@
     z-index: 2;
     opacity: 1;
     background-color: rgba(255, 224, 113, 0.88);
+    transition: 0.5s;
 }
 
 .project__title {
