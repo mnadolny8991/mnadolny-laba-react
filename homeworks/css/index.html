@@ -12,20 +12,20 @@
         <button class="btn-switch">
             <img class="btn-switch__img" src="./assets/theme-icon-light.svg" alt="change theme icon">
         </button>
-        <header class="profile-info">
-            <img src="./assets/profile-picture.svg">
-            <div>
-                <h1>Victor Alvarado</h1>
-                <p>Software Engineer</p>
-                <div class="socials">
-                    <img src="./assets/github-icon-light.svg">
-                    <img src="./assets/twitter-icon-light.svg">
-                    <img src="./assets/linkedin-icon-light.svg">
-                    <img src="./assets/youtube-icon-light.svg">
+        <header class="header">
+            <section class="profile-info">
+                <img src="./assets/profile-picture.svg">
+                <div>
+                    <h1>Victor Alvarado</h1>
+                    <p>Software Engineer</p>
+                    <div class="socials">
+                        <img src="./assets/github-icon-light.svg">
+                        <img src="./assets/twitter-icon-light.svg">
+                        <img src="./assets/linkedin-icon-light.svg">
+                        <img src="./assets/youtube-icon-light.svg">
+                    </div>
                 </div>
-            </div>
-        </header>
-        <main class="main-content">
+            </section>
             <section class="profile-facts">
                 <article class="profile-fact">
                     <h2>7</h2>
@@ -33,20 +33,22 @@
                 </article>
                 <article class="profile-fact">
                     <h2>50+</h2>
-                    <p class="profile-about">Completed<br>projects</p>
+                    <p class="profile-fact__about">Completed<br>projects</p>
                 </article>
                 <article class="profile-fact">
                     <h2>20+</h2>
                     <p class="profile-fact__about">Satisfied<br>customers</p>
                 </article>
             </section>
-            <div class="profile-buttons">
-                <button class="profile-buttons__button profile-buttons__button--highlighted">Download CV <img src="./assets/download-icon.svg"></button>
-                <button class="profile-buttons__button">Contact me</button>
-            </div>
+            <section class="profile-buttons">
+                <button class="profile-buttons__button profile-buttons__button--download btn-default">Download CV <img src="./assets/download-icon.svg"></button>
+                <button class="profile-buttons__button  btn-default">Contact me</button>
+            </section>
+        </header>
+        <main class="main">
             <div class="tabs-buttons">
-                <button class="tabs-buttons__button tabs-buttons__button--selected">Portfolio</button>
-                <button class="tabs-buttons__button">Skills</button>
+                <button class="tabs-buttons__button tabs-buttons__button--selected  btn-default">Portfolio</button>
+                <button class="tabs-buttons__button  btn-default">Skills</button>
             </div>
             <section class="tabs-content">
                 <img src="./assets/project1.svg"> 
