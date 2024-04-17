@@ -19,6 +19,20 @@
     gap: 1rem;
     background-color: var(--sec-color);
     color: #3D3D3D;
+    opacity: 0;
+    animation: cv-btn-slide 1s 0.5s ease-out forwards;
+}
+
+@keyframes cv-btn-slide {
+    0% {
+        transform: translateX(-1000px);
+        opacity: 0.2;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 @media (max-width: 780px) {

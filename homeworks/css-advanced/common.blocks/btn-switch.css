@@ -20,7 +20,13 @@
 
 .btn-switch:hover {
     background-color: var(--sec-color);
-    transition: .3s;
+    transition: .3s ease-in-out;
+}
+
+.btn-switch:active {
+    animation: btn-switch-click 0.3s ease-in forwards;
+    box-shadow: 0 13px 13px -4px gray;
+    transition: 0.3s ease-in forwards;
 }
 
 @media (max-width: 780px) {
