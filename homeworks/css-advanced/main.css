@@ -49,14 +49,10 @@ h3 {
 
 .btn-default {
     background: none;
-	color: inherit;
 	border: none;
-	font: inherit;
 	cursor: pointer;
-	outline: inherit;
     background-color: var(--pri-color);
     border-radius: 10px;
-    padding: 1rem 2rem;
     color: var(--pri-text-color);
 }
 
@@ -75,7 +71,6 @@ p {
     align-items: center;
     margin: auto;
     gap: 3rem;
-    padding: 2rem;
 }
 
 .main {
@@ -86,12 +81,53 @@ p {
     gap: 3rem;
 }
 
+.footer {
+    text-align: center;
+    width: 100%;
+}
+
 .profile-buttons__button_download {
-    gap: 1rem;
+    gap: 0.5rem;
     background-color: var(--sec-color);
     color: #3D3D3D;
 }
 
 .tabs-buttons__button_selected {
     background-color: var(--sel-color);
+}
+
+@media (max-width: 780px) {
+    * {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .btn-default {
+        font-size: 12px;
+    }
+
+    .container {
+        width: 340px;
+        padding: 0;
+    }
+
+    .main {
+        gap: 2rem;
+        width: 100%;
+    }
+
+    .footer {
+        width: 100%;
+    }
 }

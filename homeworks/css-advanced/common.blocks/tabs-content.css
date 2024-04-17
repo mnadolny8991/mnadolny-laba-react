@@ -6,6 +6,7 @@
     row-gap: 2rem;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
 }
 
 .project__img {
@@ -18,7 +19,7 @@
     display: flex;
     position: relative;
     z-index: 1;
-    justify-content: end;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     border-radius: 15px;
@@ -67,4 +68,25 @@
 .project__link:hover {
     background-color: var(--sel-color);
     transition: 0.3s;
+}
+
+@media (max-width: 780px) {
+    .tabs-content {
+        flex-direction: column;
+    }
+
+    .project {
+        width: 340px;
+    }
+
+    .project__desc {
+        width: auto;
+        height: 210px;
+        margin-top: -210px;
+    }
+
+    .project__img {
+        width: auto;
+        height: 210px;
+    }
 }

@@ -17,3 +17,25 @@
 .tabs-buttons__button_selected {
     background-color: var(--sel-color);
 }
+
+@media (max-width: 780px) {
+    .tabs-buttons {
+        width: 340px;
+    }
+
+    .tabs-buttons__button {
+        width: 154px;
+        height: 50.3px;
+    }
+}
+
+@media (max-width: 600px) {
+    .tabs-buttons {
+        width: 340px;
+    }
+
+    .tabs-buttons__button {
+        width: 154px;
+        height: 50.3px;
+    }
+}

@@ -22,3 +22,14 @@
     background-color: var(--sec-color);
     transition: .3s;
 }
+
+@media (max-width: 780px) {
+    .btn-switch {
+        width: 48px;
+        height: 48px;
+    }
+
+    .btn-switch__img {
+        width: 24px;
+    }
+}

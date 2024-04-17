@@ -20,3 +20,18 @@
     background-color: var(--sec-color);
     color: #3D3D3D;
 }
+
+@media (max-width: 780px) {
+    .profile-buttons__button {
+        width: 158px;
+        height: 44px;
+        text-wrap: nowrap;
+        justify-content: center;
+        gap: 1px;
+    }
+
+    .profile-buttons__dow-icon {
+        width: 16px;
+        height: 14px;
+    }
+}
