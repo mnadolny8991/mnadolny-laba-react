@@ -1,0 +1,19 @@
+@import url('../main.css');
+
+.tabs-buttons {
+    background-color: var(--pri-color);
+    padding: 0.5rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.tabs-buttons__button {
+    width: 351px;
+    height: 80px;
+}
+
+.tabs-buttons__button_selected {
+    background-color: var(--sel-color);
+}
