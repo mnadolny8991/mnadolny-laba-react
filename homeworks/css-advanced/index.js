@@ -20,7 +20,6 @@ let start = null;
 function scrollAnimation() {
     start = null;
     window.requestAnimationFrame(scrollStep);
-    console.log(document.body.scrollTop);
 }
 
 function scrollStep(timestamp) {
@@ -29,11 +28,12 @@ function scrollStep(timestamp) {
     }
     
     const progress = timestamp - start;
-    document.body.scrollTop -= progress / 10;
-    document.documentElement.scrollTop -= progress / 10;
+    const velocity = 0.4;
+    document.body.scrollTop -= progress * velocity;
+    document.documentElement.scrollTop -= progress * velocity;
 
     if (document.body.scrollTop > 0 || 
-        document.documentElement.scrollTop) {
+        document.documentElement.scrollTop > 0) {
         window.requestAnimationFrame(scrollStep);
     }
 }
