@@ -1,5 +1,5 @@
-let btn = document.querySelector('.btn-switch');
-btn.addEventListener('click', changeTheme);
+let btnSwitch = document.querySelector('.btn-switch');
+btnSwitch.addEventListener('click', changeTheme);
 
 function changeTheme() {
     const body = document.querySelector('body');
@@ -10,5 +10,30 @@ function changeTheme() {
     } else {
         body.classList.replace('dark-theme', 'light-theme');
         document.querySelector('.btn-switch__img').src = "./assets/theme-icon-light.svg";
+    }
+}
+
+let btnScroll = document.querySelector('.btn-scroll');
+btnScroll.addEventListener('click', scrollAnimation);
+let start = null;
+
+function scrollAnimation() {
+    start = null;
+    window.requestAnimationFrame(scrollStep);
+    console.log(document.body.scrollTop);
+}
+
+function scrollStep(timestamp) {
+    if (!start) {
+        start = timestamp;
+    }
+    
+    const progress = timestamp - start;
+    document.body.scrollTop -= progress / 10;
+    document.documentElement.scrollTop -= progress / 10;
+
+    if (document.body.scrollTop > 0 || 
+        document.documentElement.scrollTop) {
+        window.requestAnimationFrame(scrollStep);
     }
 }

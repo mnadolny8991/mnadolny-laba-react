@@ -1,0 +1,22 @@
+@import url('../main.css');
+
+.btn-scroll {
+    display: none;
+}
+
+@media (max-width: 780px) {
+    .btn-scroll {
+        position: fixed;
+        bottom: 20px;
+        right: 40px;
+        margin: auto;
+        z-index: 6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        background-color: var(--sec-color)
+    }
+}

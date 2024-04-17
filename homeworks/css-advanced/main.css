@@ -84,6 +84,7 @@ p {
 .footer {
     text-align: center;
     width: 100%;
+    margin-bottom: 2rem;
 }
 
 .profile-buttons__button_download {
@@ -124,10 +125,6 @@ p {
 
     .main {
         gap: 2rem;
-        width: 100%;
-    }
-
-    .footer {
         width: 100%;
     }
 }

@@ -80,13 +80,13 @@
     }
 
     .project__desc {
-        width: auto;
+        width: inherit;
         height: 210px;
         margin-top: -210px;
     }
 
     .project__img {
-        width: auto;
+        width: inherit;
         height: 210px;
     }
 }
