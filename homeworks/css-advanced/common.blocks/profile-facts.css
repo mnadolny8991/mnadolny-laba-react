@@ -1,0 +1,30 @@
+@import url('../main.css');
+
+.profile-facts {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.profile-fact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-fact__about {
+    text-align: center;
+}
+
+@media (max-width: 780px) {
+    .profile-facts {
+        justify-content: center;
+        column-gap: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    /* .profile-facts {
+        justify-content: space-between;
+    } */
+}

@@ -1,0 +1,51 @@
+@import url('../main.css');
+
+.profile-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+.profile-buttons__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 290px;
+    height: 80px;
+}
+
+.profile-buttons__button_download {
+    gap: 1rem;
+    background-color: var(--sec-color);
+    color: #3D3D3D;
+    opacity: 0;
+    animation: cv-btn-slide 1s 0.5s ease-out forwards;
+}
+
+@keyframes cv-btn-slide {
+    0% {
+        transform: translateX(-1000px);
+        opacity: 0.2;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 780px) {
+    .profile-buttons__button {
+        width: 158px;
+        height: 44px;
+        text-wrap: nowrap;
+        justify-content: center;
+        gap: 1px;
+    }
+
+    .profile-buttons__dow-icon {
+        width: 16px;
+        height: 14px;
+    }
+}

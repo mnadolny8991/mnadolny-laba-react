@@ -1,0 +1,41 @@
+@import url('../main.css');
+
+.btn-switch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--pri-color);
+}
+
+.btn-switch_sticky {
+    position: sticky;
+    top: 20px;
+    z-index: 6;
+}
+
+.btn-switch:hover {
+    background-color: var(--sec-color);
+    transition: .3s ease-in-out;
+}
+
+.btn-switch:active {
+    animation: btn-switch-click 0.3s ease-in forwards;
+    box-shadow: 0 13px 13px -4px gray;
+    transition: 0.3s ease-in forwards;
+}
+
+@media (max-width: 780px) {
+    .btn-switch {
+        width: 48px;
+        height: 48px;
+    }
+
+    .btn-switch__img {
+        width: 24px;
+    }
+}
