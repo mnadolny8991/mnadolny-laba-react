@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+h1 {
+    font-size: 46px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 22px;
+}
+
+.light-theme {
+    background-color: #E9EBEC;
+
+    --pri-text-color: #3D3D3D;
+    --sec-text-color: #575757;
+
+    --pri-color: #FFFFFF;
+    --sec-color: #FBD144;
+
+    --sel-color: #D7D7D7;
+}
+
+.dark-theme {
+    background-color: #0C151D;
+
+    --pri-text-color: #F1F2F4;
+    --sec-text-color: #A3ABB2;
+
+    --pri-color: #171F26;
+    --sec-color: #FFE071;
+
+    --sel-color: #0C151D;
+}
+
+* {
+    box-sizing: border-box; 
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 22px;
+    color: var(--sec-text-color);
+    padding: 0;
+    margin: 0;
+ }
+
+.btn-default {
+    background: none;
+	color: inherit;
+	border: none;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    background-color: var(--pri-color);
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    color: var(--pri-text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--pri-text-color);
+}
+
+p {
+    color: var(--sec-text-color);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    gap: 3rem;
+    padding: 2rem;
+}
+
+.main {
+    width: 760px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.profile-buttons__button_download {
+    gap: 1rem;
+    background-color: var(--sec-color);
+    color: #3D3D3D;
+}
+
+.tabs-buttons__button_selected {
+    background-color: var(--sel-color);
+}
