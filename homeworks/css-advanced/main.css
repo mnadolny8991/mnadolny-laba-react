@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+* {
+    box-sizing: border-box; 
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 22px;
+    color: var(--sec-text-color);
+    padding: 0;
+    margin: 0;
+ }
+
 h1 {
     font-size: 46px;
 }
@@ -36,17 +47,6 @@ h3 {
     --sel-color: #0C151D;
 }
 
-* {
-    box-sizing: border-box; 
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 22px;
-    color: var(--sec-text-color);
-    padding: 0;
-    margin: 0;
- }
-
 .btn-default {
     background: none;
 	border: none;
@@ -70,7 +70,6 @@ p {
     justify-content: center;
     align-items: center;
     margin: auto;
-    gap: 3rem;
 }
 
 .main {
@@ -78,13 +77,15 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    margin-top: 75px;
+    gap: 65px;
 }
 
 .footer {
     text-align: center;
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 80px;
+    margin-top: 78px;
 }
 
 .profile-buttons__button_download {
@@ -119,12 +120,18 @@ p {
     }
 
     .container {
-        width: 340px;
+        width: 375px;
         padding: 0;
     }
 
     .main {
-        gap: 2rem;
         width: 100%;
+        margin-top: 30px;
+        gap: 30px;
+    }
+
+    .footer {
+        margin-top: 30px;
+        margin-bottom: 40px;
     }
 }

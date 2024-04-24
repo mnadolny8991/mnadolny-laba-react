@@ -5,14 +5,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 48px;
     width: 634px;
+    margin-top: 98px;
 }
 
 .profile-info {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 40px;
 }
 
 .socials {
@@ -33,11 +34,10 @@
 
     .header {
         width: 100%;
-        gap: 1.3rem;
+        margin-top: 50px;
+        gap: 30px;
     }
-}
 
-@media (max-width: 600px) {
     .profile-info {
         flex-direction: column;
     }

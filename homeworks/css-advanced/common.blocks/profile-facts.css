@@ -2,8 +2,9 @@
 
 .profile-facts {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
+    padding: 20px 31px;
 }
 
 .profile-fact {
@@ -18,13 +19,10 @@
 
 @media (max-width: 780px) {
     .profile-facts {
-        justify-content: center;
-        column-gap: 1rem;
+        padding: 20px 20px;
     }
 }
 
 @media (max-width: 600px) {
-    /* .profile-facts {
-        justify-content: space-between;
-    } */
+
 }

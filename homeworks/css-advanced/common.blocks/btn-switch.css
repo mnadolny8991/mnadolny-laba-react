@@ -14,7 +14,7 @@
 
 .btn-switch_sticky {
     position: sticky;
-    top: 20px;
+    top: 33px;
     z-index: 6;
 }
 
@@ -37,5 +37,9 @@
 
     .btn-switch__img {
         width: 24px;
+    }
+
+    .btn-switch_sticky {
+        top: 20px;
     }
 }
