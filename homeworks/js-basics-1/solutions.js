@@ -117,6 +117,14 @@ function findOdd(A) {
     return null;
 }
 
+function findOutlier(integers) {
+    let evenCount = integers.reduce((acc, int) => acc + (Math.abs(int % 2) === 0), 0)
+    if (evenCount === 1) {
+        return integers.find(int => Math.abs(int % 2) === 0)
+    }
+    return integers.find(int => Math.abs(int % 2) === 1)
+}
+
 function zipWith(fn, a0, a1) {
     if (a0.length <= a1.length) {
         return a0.map((item, index) => fn(item, a1[index]));
