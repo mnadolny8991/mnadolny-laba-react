@@ -248,3 +248,59 @@ function duplicateEncode(word) {
     }).join('');
 }
 
+// TODO: put 1st hashed cata here
+
+function towerBuilder(nFloors) {
+    const baseWidth = nFloors + (nFloors - 1);
+    let tower = [];
+    for (let i = 0; i < nFloors; i++) {
+        const blockCount = (i + 1) + i;
+        const freeSpace = baseWidth - blockCount;
+        tower.push('');
+        for (let j = 0; j < freeSpace / 2; j++) {
+            tower[i] += ' ';
+        }
+        for (let j = 0; j < blockCount; j++) {
+            tower[i] += '*';
+        }
+        for (let j = 0; j < freeSpace / 2; j++) {
+            tower[i] += ' ';
+        }
+    }
+    return tower;
+}
+
+function wave(str) {
+    let waves = [];
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] !== ' ') {
+            waves.push(str.slice(0, i) + str[i].toUpperCase() + str.slice(i + 1));
+        }
+    }
+    return waves;
+}
+
+function stringBreakers(n, string) {
+    let retString = '';
+    let counter = 1;
+    for (let i = 0; i < string.length; i++) {
+        if (string[i] !== ' ') {
+            retString += string[i];
+            if (counter == n) {
+                retString += '\n';
+                counter = 1;
+                continue;
+            }
+            counter++;
+        }
+    }
+    return retString;
+}
+
+function domainName(url) {
+    const match = url.match(/^(?:https?:\/\/)?(?:www\.)?([^\/]+)/);
+    if (match && match[1]) {
+        return match[1].split('.')[0];
+    }
+    return null;
+}
