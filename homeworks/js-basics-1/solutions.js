@@ -1,7 +1,9 @@
+// http://www.codewars.com/kata/opposite-number
 function opposite(number) {
     return -number;
 }
 
+// http://www.codewars.com/kata/basic-mathematical-operations
 function basicOp(operation, value1, value2) {
     switch (operation) {
         case '+':
@@ -17,10 +19,12 @@ function basicOp(operation, value1, value2) {
     }
 }
 
+// http://www.codewars.com/kata/printing-array-elements-with-comma-delimiters
 function printArray(array) {
     return array.join(',');
 }
 
+// http://www.codewars.com/kata/transportation-on-vacation
 function rentalCarCost(d) {
     let discount = 0;
     if (d >= 7) {
@@ -32,7 +36,7 @@ function rentalCarCost(d) {
     return costPerDay * d - discount;
 }
 
-
+// http://www.codewars.com/kata/calculating-with-functions
 function zero(f) {
     return f ? f(0) : 0;
 }
@@ -77,6 +81,7 @@ function dividedBy(a) {
     return (b) => Math.floor(b / a);
 }
 
+// http://www.codewars.com/kata/get-the-middle-character
 function getMiddle(s) {
     const mid = Math.floor(s.length / 2);
     if (s.length % 2 === 1) {
@@ -85,6 +90,7 @@ function getMiddle(s) {
     return s.slice(mid - 1, mid + 1);
 }
 
+// http://www.codewars.com/kata/partition-on
 function partitionOn(pred, items) {
     let left = [];
     let right = [];
@@ -100,6 +106,21 @@ function partitionOn(pred, items) {
     return left.length;
 }
 
+// https://www.codewars.com/kata/526571aae218b8ee490006f4
+function countBits(n) {
+    let onesCount = 0;
+    let reminder;
+    do {
+        reminder = n % 2;
+        if (reminder === 1) {
+            onesCount++;
+        }
+        n = Math.floor(n / 2);
+    } while (n > 0);
+    return onesCount;
+}
+
+// https://www.codewars.com/kata/find-the-odd-int/
 function findOdd(A) {
     let count = new Map();
     for (let item of A) {
@@ -117,6 +138,7 @@ function findOdd(A) {
     return null;
 }
 
+// https://www.codewars.com/kata/find-the-parity-outlier
 function findOutlier(integers) {
     let evenCount = integers.reduce((acc, int) => acc + (Math.abs(int % 2) === 0), 0)
     if (evenCount === 1) {
@@ -125,6 +147,7 @@ function findOutlier(integers) {
     return integers.find(int => Math.abs(int % 2) === 1)
 }
 
+// https://www.codewars.com/kata/zipwith
 function zipWith(fn, a0, a1) {
     if (a0.length <= a1.length) {
         return a0.map((item, index) => fn(item, a1[index]));
@@ -132,6 +155,7 @@ function zipWith(fn, a0, a1) {
     return a1.map((item, index) => fn(a0[index], item));
 }
 
+// https://www.codewars.com/kata/filter-the-number
 function filterString(value) {
     let strNumber = '';
     for (let char of value) {
@@ -143,6 +167,7 @@ function filterString(value) {
     return parseInt(strNumber, 10);
 }
 
+// https://www.codewars.com/kata/n-th-fibonacci
 function nthFibo(n) {
     if (n === 1) {
         return 0;
@@ -153,6 +178,7 @@ function nthFibo(n) {
     return nthFibo(n - 2) + nthFibo(n - 1);
 }
 
+// https://www.codewars.com/kata/cat-and-mouse-2d-version/
 function findMapInfo(map) {
     let x = 0;
     let y = 0;
@@ -230,6 +256,7 @@ function catMouse(map, moves) {
     return 'Caught!';
 }
 
+// https://www.codewars.com/kata/duplicate-encoder
 function duplicateEncode(word) {
     let letterMap = new Map();
     let chars = word.toLowerCase().split('');
@@ -250,6 +277,7 @@ function duplicateEncode(word) {
 
 // TODO: put 1st hashed cata here
 
+// https://www.codewars.com/kata/576757b1df89ecf5bd00073b
 function towerBuilder(nFloors) {
     const baseWidth = nFloors + (nFloors - 1);
     let tower = [];
@@ -270,6 +298,7 @@ function towerBuilder(nFloors) {
     return tower;
 }
 
+// https://www.codewars.com/kata/58f5c63f1e26ecda7e000029
 function wave(str) {
     let waves = [];
     for (let i = 0; i < str.length; i++) {
@@ -280,6 +309,7 @@ function wave(str) {
     return waves;
 }
 
+// https://www.codewars.com/kata/59d398bb86a6fdf100000031
 function stringBreakers(n, string) {
     let retString = '';
     let counter = 1;
@@ -297,6 +327,7 @@ function stringBreakers(n, string) {
     return retString;
 }
 
+// https://www.codewars.com/kata/514a024011ea4fb54200004b
 function domainName(url) {
     const match = url.match(/^(?:https?:\/\/)?(?:www\.)?([^\/]+)/);
     if (match && match[1]) {
