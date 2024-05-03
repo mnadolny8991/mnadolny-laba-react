@@ -275,7 +275,37 @@ function duplicateEncode(word) {
     }).join('');
 }
 
-// TODO: put 1st hashed cata here
+// https://www.codewars.com/kata/5693239fb761dc8670000001
+function findAdditiveNumbers(num) {
+    const backtrack = (num, numbers = [], idx = 0) => {
+        if (idx === num.length && numbers.length >= 3) {
+            return numbers;
+        }
+
+        for (let i = idx; i < num.length; ++i) {
+            if (num[idx] === "0" && i !== idx) {
+                break;
+            }
+
+            const n = parseInt(num.slice(idx, i + 1));
+            const len = numbers.length;
+            if (len >= 2 && numbers[len - 1] + numbers[len - 2] !== n) {
+                continue;
+            }
+
+            numbers.push(n);
+            const result = backtrack(num, numbers, i + 1);
+            if (result.length > 0) {
+                return result;
+            }
+            numbers.pop();
+        }
+
+        return [];
+    }
+
+    return backtrack(num).map(n => n.toString());
+};
 
 // https://www.codewars.com/kata/576757b1df89ecf5bd00073b
 function towerBuilder(nFloors) {
