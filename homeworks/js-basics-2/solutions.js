@@ -11,7 +11,7 @@ function pairs(arr) {
     let count = 0;
     for (let i = 0; i < arr.length; i++) {
         if (i % 2 === 0) {
-            let first = arr[i];
+            const first = arr[i];
             let second;
             if (i + 1 < arr.length) {
                 second = arr[i + 1];
@@ -39,6 +39,24 @@ function maxMultiple(divisor, bound) {
 }
 
 // https://www.codewars.com/kata/514a6336889283a3d2000001
-function getEvenNumbers(numbersArray){
+function getEvenNumbers(numbersArray) {
     return numbersArray.filter(n => n % 2 === 0);
 }
+
+// https://www.codewars.com/kata/5a090c4e697598d0b9000004
+function solve(arr) {
+    arr = arr.sort((a, b) => b - a);
+    let left = 0;
+    let right = arr.length - 1;
+    let result = [];
+    while (left <= right) {
+        if (left === right) {
+            result.push(arr[left]);
+            break;
+        }
+        result.push(arr[left], arr[right]);
+        left++;
+        right--;
+    }
+    return result;
+};
