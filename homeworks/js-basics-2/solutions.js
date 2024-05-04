@@ -134,3 +134,62 @@ function sortArray(array) {
 }
 
 // https://www.codewars.com/kata/515bb423de843ea99400000a
+class PaginationHelper {
+    constructor(collection, itemsPerPage) {
+        // The constructor takes in an array of items and a integer indicating how many
+        // items fit within a single page
+        this.collection = collection;
+        this.itemsPerPage = itemsPerPage;
+    }
+    itemCount() {
+        // returns the number of items within the entire collection
+        return this.collection.length;
+    }
+    pageCount() {
+        // returns the number of pages
+        const d = this.collection.length / this.itemsPerPage;
+        const fit = Math.floor(d);
+        if (d === fit) {
+            return fit;
+        }
+        return fit + 1;
+    }
+    pageItemCount(pageIndex) {
+        // returns the number of items on the current page. page_index is zero based.
+        // this method should return -1 for pageIndex values that are out of range
+        const cnt = this.pageCount();
+        if (pageIndex > cnt - 1 || pageIndex < 0) {
+            return -1;
+        }
+        if (pageIndex === cnt - 1) {
+            const reminder = this.collection.length % this.itemsPerPage;
+            if (reminder === 0) return this.itemsPerPage;
+            return reminder;
+        }
+        return this.itemsPerPage;
+    }
+    pageIndex(itemIndex) {
+        // determines what page an item is on. Zero based indexes
+        // this method should return -1 for itemIndex values that are out of range
+        if (itemIndex < 0 || itemIndex >= this.collection.length) {
+            return -1;
+        }
+        return Math.floor(itemIndex / this.itemsPerPage);
+    }
+}
+
+// https://www.codewars.com/kata/52597aa56021e91c93000cb0
+function moveZeros(arr) {
+    let zeroCnt = 0;
+    const noZero = [...arr].filter(item => {
+        if (item !== 0) {
+            return true;
+        }
+        zeroCnt++;
+    });
+    const len = noZero.length;
+    noZero.length = len + zeroCnt;
+    return noZero.fill(0, len, len + zeroCnt);
+}
+
+// https://www.codewars.com/kata/585d8c8a28bc7403ea0000c3
