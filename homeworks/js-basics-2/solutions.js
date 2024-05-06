@@ -193,3 +193,71 @@ function moveZeros(arr) {
 }
 
 // https://www.codewars.com/kata/585d8c8a28bc7403ea0000c3
+function findUniq(arr) {
+    const letterMap = new Map();
+    const letters = arr.map(word => word.toLowerCase()).join('');
+    letters.split('').forEach(l => {
+        if (!letterMap.has(l)) letterMap.set(l, 1);
+        else letterMap.set(l, letterMap.get(l) + 1);
+    });
+    let min = letters[0];
+    for (let key of letterMap.keys()) {
+        if (letterMap.get(key) < letterMap.get(min)) {
+            min = key;
+        }
+    }
+    for (let word of arr) {
+        let lower = word.toLowerCase();
+        if (lower.includes(min)) {
+            return word;
+        }
+    }
+    return null;
+}
+
+// https://www.codewars.com/kata/5296bc77afba8baa690002d7
+function sudoku(puzzle) {
+    const next = nextEmpty(puzzle);
+    if (!next) {
+        return puzzle;
+    }
+
+    for (let i = 1; i <= 9; i++) {
+        if (check(puzzle, next[0], next[1], i)) {
+            puzzle[next[0]][next[1]] = i;
+            const puzz = sudoku(puzzle);
+            if (puzz) {
+                return puzz;
+            }
+            puzzle[next[0]][next[1]] = 0;
+        }
+    }
+    return null;
+}
+
+function nextEmpty(puzzle) {
+    for (let i = 0; i < puzzle.length; i++) {
+        for (let j = 0; j < puzzle[i].length; j++) {
+            if (puzzle[i][j] === 0) {
+                return [i, j];
+            }
+        }
+    }
+    return null;
+}
+
+function check(puzzle, row, column, number) {
+    const rowSet = new Set(puzzle[row]);
+    const colSet = new Set();
+    for (let row of puzzle) colSet.add(row[column]);
+    const rectSet = new Set();
+    const rectRow = Math.floor(row / 3);
+    const rectCol = Math.floor(column / 3);
+    for (let i = rectRow * 3; i < (rectRow + 1) * 3; i++) {
+        for (let j = rectCol * 3; j < (rectCol + 1) * 3; j++) {
+            rectSet.add(puzzle[i][j]);
+        }
+    }
+
+    return !rowSet.has(number) && !colSet.has(number) && !rectSet.has(number);
+}
