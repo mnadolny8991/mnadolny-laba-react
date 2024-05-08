@@ -200,3 +200,24 @@ function OnceNamedOne(first, last) {
 }
 
 // https://www.codewars.com/kata/partial-keys
+function partialKeys(obj) {
+    const sortedKeys = Object.keys(obj).sort();
+    const partialKeyProxy = new Proxy(obj, {
+        get: function (target, prop) {
+            const partialKeys = sortedKeys.filter(key => key.startsWith(prop));
+            const firstPartialKey = partialKeys[0];
+            return firstPartialKey ? target[firstPartialKey] : undefined;
+        }
+    });
+    return partialKeyProxy;
+}
+
+// https://www.codewars.com/kata/human-readable-time
+function humanReadable(seconds) {
+    const h = Math.floor(seconds / 3600);
+    let remaining = seconds - h * 3600;
+    const m = Math.floor(remaining / 60);
+    remaining = seconds - h * 3600 - m * 60;
+    const s = remaining;
+    return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+}
