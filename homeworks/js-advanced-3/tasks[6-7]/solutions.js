@@ -23,3 +23,5 @@ function isPolishPhoneNumber(number) {
 // console.log(isPolishPhoneNumber('+48-725-726-111')); // false
 // console.log(isPolishPhoneNumber('+48 725/726/111')); // true
 // console.log(isPolishPhoneNumber('+55 725 725 444')); // false
+// console.log(isPolishPhoneNumber('+55 725 725 444dddddddddddddddddddddd')); // false
+// console.log(isPolishPhoneNumber('aaaaaaaaaaaaaaaaaa+55 725 725 444')); // false
