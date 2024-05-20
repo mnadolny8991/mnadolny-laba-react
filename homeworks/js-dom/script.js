@@ -1,6 +1,11 @@
 const ROWS_COUNT = 30;
 const COLS_COUNT = 20;
+
 let activeCell;
+let selectedCell;
+let selectedCells = new Set();
+
+let shiftPressed = false;
 
 const container = document.querySelector('.container');
 const body = document.querySelector('.body');
@@ -20,6 +25,16 @@ for (let i = 0; i < ROWS_COUNT; i++) {
     }
 }
 
+function selectCell(cellNode, row, col) {
+    cellNode.innerHTML = `${col}/${row}`;
+    cellNode.classList.toggle('cell__selected');
+}
+
+function deselectCell(cellNode) {
+    cellNode.innerHTML = '';
+    cellNode.classList.toggle('cell__selected');
+}
+
 body.addEventListener('click', e => {
     const t = e.target;
     if (!t.classList.contains('cell')) {
@@ -27,12 +42,25 @@ body.addEventListener('click', e => {
     }
     const row = parseInt(t.getAttribute('data-row'));
     const col = parseInt(t.getAttribute('data-col'));
-    if (t.innerHTML === '') {
-        t.innerHTML = `${col}/${row}`;
-    } else {
-        t.innerHTML = '';
+    const rowColStr = `${row} ${col}`;
+    if (selectedCells.has(rowColStr)) {
+        deselectCell(t);
+        selectedCells.delete(rowColStr);
+        return;
     }
-    t.classList.toggle('cell__selected');
+    if (shiftPressed) {
+        selectCell(t, row, col);
+        selectedCells.add(rowColStr);
+        return;
+    }
+    for (const val of selectedCells) {
+        const [prevRow, prevCol] = val.split(' ').map(v => parseInt(v));
+        const cell = document.querySelector(`[data-row="${prevRow}"][data-col="${prevCol}"]`);
+        deselectCell(cell);
+    }
+    selectedCells.clear();
+    selectCell(t, row, col);
+    selectedCells.add(rowColStr);
 });
 
 function toggleHighlight(row, col) {
@@ -59,12 +87,8 @@ body.addEventListener('mousedown', e => {
 
 body.addEventListener('mouseup', e => {
     const t = e.target;
+    if (!activeCell) return;
     const [activeRow, activeCol] = activeCell;
-    if (!t.classList.contains('cell')) {
-        toggleHighlight(activeRow, activeCol);
-        activeCell = null;
-        return;
-    }
     const [row, col] = getPosition(t);
     if (row != activeRow || col != activeCol) {
         toggleHighlight(activeRow, activeCol);
@@ -72,4 +96,16 @@ body.addEventListener('mouseup', e => {
         toggleHighlight(row, col);
     }
     activeCell = null;
+});
+
+body.addEventListener('keydown', e => {
+    if (e.code === 'ShiftLeft') {
+        shiftPressed = true;
+    }
+});
+
+body.addEventListener('keyup', e => {
+    if (e.code === 'ShiftLeft') {
+        shiftPressed = false;
+    }
 });
