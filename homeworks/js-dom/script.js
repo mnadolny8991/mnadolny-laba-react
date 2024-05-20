@@ -2,7 +2,6 @@ const ROWS_COUNT = 30;
 const COLS_COUNT = 20;
 
 let activeCell;
-let selectedCell;
 let selectedCells = new Set();
 
 let shiftPressed = false;
@@ -10,15 +9,13 @@ let shiftPressed = false;
 const container = document.querySelector('.container');
 const body = document.querySelector('.body');
 
-container.style.gridTemplateColumns = `repeat(${COLS_COUNT}, 1fr)`;
-container.style.gridTemplateRows = `repeat(${ROWS_COUNT}, 1fr)`;
+container.style.gridTemplateColumns = `repeat(${COLS_COUNT}, auto)`;
+container.style.gridTemplateRows = `repeat(${ROWS_COUNT}, auto)`;
 
 for (let i = 0; i < ROWS_COUNT; i++) {
     for (let j = 0; j < COLS_COUNT; j++) {
         const cell = document.createElement('div');
         cell.className = 'cell';
-        cell.style.cursor = 'pointer';
-        cell.style.userSelect = 'none';
         cell.setAttribute('data-row', i.toString());
         cell.setAttribute('data-col', j.toString());
         container.appendChild(cell);
@@ -27,12 +24,12 @@ for (let i = 0; i < ROWS_COUNT; i++) {
 
 function selectCell(cellNode, row, col) {
     cellNode.innerHTML = `${col}/${row}`;
-    cellNode.classList.toggle('cell__selected');
+    cellNode.classList.toggle('cell_selected');
 }
 
 function deselectCell(cellNode) {
     cellNode.innerHTML = '';
-    cellNode.classList.toggle('cell__selected');
+    cellNode.classList.toggle('cell_selected');
 }
 
 body.addEventListener('click', e => {
@@ -67,8 +64,8 @@ function toggleHighlight(row, col) {
     if (!row || !col) return;
     const rowCells = document.querySelectorAll(`[data-row="${row}"]`);
     const colCells = document.querySelectorAll(`[data-col="${col}"]`);
-    rowCells.forEach(c => !c.classList.contains('cell__selected') && c.classList.toggle('cell__active'));
-    colCells.forEach(c => !c.classList.contains('cell__selected') && c.classList.toggle('cell__active'));
+    rowCells.forEach(c => !c.classList.contains('cell_selected') && c.classList.toggle('cell_active'));
+    colCells.forEach(c => !c.classList.contains('cell_selected') && c.classList.toggle('cell_active'));
 }
 
 function getPosition(cell) {

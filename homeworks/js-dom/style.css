@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap');
+
 * {
     padding: 0;
     margin: 0;
+    font-family: "Reddit Sans", sans-serif;
 }
 
 .body {
@@ -9,27 +12,35 @@
 }
 
 .container {
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 80px;
+    margin-bottom: 80px;
     display: grid;
     gap: 2px;
     color: white;
 }
 
 .cell {
-    background-color: #CCC;
+    background-color: #DDD;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
     width: 40px;
     height: 40px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 5px;
 }
 
-.cell__selected {
+.cell_selected {
     background-color: blue;
 }
 
-.cell__active { 
+.cell_active { 
     background-color: lightblue;
+}
+
+.hint {
+    top: 20px;
+    position: fixed;
 }
