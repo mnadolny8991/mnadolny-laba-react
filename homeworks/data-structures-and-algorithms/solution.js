@@ -79,8 +79,11 @@ function sort(data, cmpFunc) {
     return data;
 }
 
+// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
+
 // CORRECTNESS TESTS
-// If this code fails then unhadled error is thrown and the progam won't create a log
+// If this code fails then error is thrown and the performance tests won't run
 function testCorrectness() {
     let item;
     [item, comp] = linearSearchBySku('', data);
@@ -117,6 +120,9 @@ function testCorrectness() {
         throw new Error('linear search is not working');
 }
 testCorrectness();
+
+// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 
 // PERFORMANCE TESTS
 const EXPERIMENT_COUNT = 1000000;
