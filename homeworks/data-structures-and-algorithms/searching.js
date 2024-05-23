@@ -20,8 +20,8 @@ function linearSearchBySku(sku, data) {
 // O(n) - additional memory usage
 // O(log(n)) - search time
 class ItemSkuIndex {
-    constructor(data) {
-        this._sortedData = data.toSorted((a, b) => {
+    constructor(data, sort) {
+        this._sortedData = sort(data, (a, b) => {
             if (a.sku < b.sku) return -1;
             if (a.sku > b.sku) return 1;
             return 0;
@@ -46,6 +46,37 @@ class ItemSkuIndex {
         }
         return [null, comparisons];
     }
+}
+
+// QUICK SORT IMPLEMENTATION
+//  time complexity - Theta(nlogn) | worst case - O(n^2) (rare)
+//  space complexity - Theta(logn) | worst case - O(n) (depends on a partition luck)
+function sort(data, cmpFunc) {
+    const swap = (arr, i, j) => {
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    const partition = (arr, left, right) => {
+        const pivot = arr[right];
+        let i = left - 1;
+        for (let j = left; j < right; j++) {
+            if (cmpFunc(arr[j], pivot) < 0) {
+                i++;
+                swap(arr, i, j);
+            }
+        }
+        const partitionIdx = i + 1;
+        swap(arr, partitionIdx, right);
+        return partitionIdx;
+    }
+    const qs = (arr, left, right) => {
+        if (left >= right) return;
+        const partitionIdx = partition(arr, left, right);
+        qs(arr, left, partitionIdx - 1);
+        qs(arr, partitionIdx + 1, right);
+    }
+    data = [...data];
+    qs(data, 0, data.length - 1);
+    return data;
 }
 
 // PERFORMANCE TESTS
@@ -94,7 +125,7 @@ console.log(`\tavg execution time: ${linAvgExec} [microsecond]`);
 console.log(`\tavg comparisons count: ${linComparisons}`);
 
 function testBinarySearch(experimentCount, data) {
-    const dataIndex = new ItemSkuIndex(data);
+    const dataIndex = new ItemSkuIndex(data, sort);
     let timeSum = 0;
     let comparisonsSum = 0;
     for (let i = 0; i < experimentCount; i++) {
