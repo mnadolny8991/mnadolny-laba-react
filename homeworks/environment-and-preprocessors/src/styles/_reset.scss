@@ -16,11 +16,11 @@
 
     .btn-switch {
         border: 1px solid #E7E7E7;
-        background-color: #FFFFFF;
+        background-color: white;
     }
 
     h1 {
-        color: #3D3D3D;
+        color: $text-primary;
     }
 
     h2 {
@@ -32,12 +32,12 @@
     }
 
     .project__text {
-        color: #3D3D3D;
+        color: $text-primary;
         cursor: default;
     }
 
     .profile-buttons__button {
-        color: #3D3D3D;
+        color: $text-primary;
         background-color: white;
     }
 
@@ -47,7 +47,7 @@
 
     .tabs-buttons {
         color: #19191B;
-        background-color: #FFFFFF;
+        background-color: white;
     }
 
     .tabs-buttons__button_selected {
@@ -69,31 +69,31 @@
     }
 
     h2 {
-        color: #A3ABB2;
+        color: $text-secondary;
     }
 
     p {
-        color: #A3ABB2;
+        color: $text-secondary;
     }
 
     .project__text {
-        color: #3D3D3D;
+        color: $text-primary;
         cursor: default;
     }
 
     .profile-buttons__button {
-        color: #A3ABB2;
+        color: $text-secondary;
         background-color: #171F26;
     }
 
     .profile-buttons__button_download {
-        color: #3D3D3D;
+        color: $text-primary;
         background-color: #FFE071;
     }
 
     .tabs-buttons {
         background-color: #171F26;
-        color: #A3ABB2;
+        color: $text-secondary;
     }
 
     .tabs-buttons__button_selected {
