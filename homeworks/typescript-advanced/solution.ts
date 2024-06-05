@@ -1,9 +1,9 @@
-interface Result {
+export interface Result {
     value: number;
     error: string;
 }
 
-interface Calculator {
+export interface Calculator {
     add(a: number, b: number): Result;
     subtract(a: number, b: number): Result;
     multiply(a: number, b: number): Result;
@@ -12,7 +12,7 @@ interface Calculator {
     sqrt(num: number): Result;
 }
 
-class BasicCalculator implements Calculator {
+export class BasicCalculator implements Calculator {
     add(a: number, b: number): Result {
         return { value: a + b, error: '' };
     }
