@@ -1,0 +1,16 @@
+.profile-facts {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 90px;
+}
+
+.profile-fact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-fact__about {
+    text-align: center;
+}

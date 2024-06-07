@@ -1,0 +1,31 @@
+{
+  "name": "environment-and-preprocessors",
+  "version": "1.0.0",
+  "description": "homework for laba react environment and preprocessors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mnadolny8991/mnadolny-laba-react"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development"
+  },
+  "keywords": [
+    "webpack",
+    "preprocessors",
+    "bundler"
+  ],
+  "author": "Michal Nadolny",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^7.1.2",
+    "mini-css-extract-plugin": "^2.9.0",
+    "sass": "^1.77.2",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  }
+}
