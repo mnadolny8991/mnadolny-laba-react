@@ -28,6 +28,7 @@
     align-items: center;
     justify-content: center;
     gap: 24px;
+    box-shadow: inset 24px 0 #0000001A, 6px 6px 10px #00000040;
 }
 
 .light {
@@ -35,4 +36,5 @@
     height: 120px;
     background-color: #5B5B5B;
     border-radius: 60px;
+    box-shadow: inset 10px 0 #0000001A;
 }
