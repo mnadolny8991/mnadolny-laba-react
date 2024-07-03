@@ -25,4 +25,25 @@ function TrafficLights({ color }) {
 const element2 = <h1>Hello From JSX</h1>;
 const domContainer = document.querySelector('#root_container');
 const root = ReactDOM.createRoot(domContainer);
+
+let colorNum = 0;
+
+function handleLights() {
+    colorNum = (colorNum + 1) % 3;
+    let color;
+    switch (colorNum) {
+        case 0:
+            color = 'red';
+            break;
+        case 1:
+            color = 'yellow';
+            break;
+        case 2:
+            color = 'green';
+            break;
+    }
+    root.render(<TrafficLights color={color} />);
+}
+
 root.render(<TrafficLights color='red' />);
+setInterval(handleLights, 1000);
