@@ -1,0 +1,42 @@
+.main {
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.gallery {
+    width: 1360px;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-items: left;
+}
+
+.tile {
+    width: 240px;
+    height: 240px;
+    border-radius: 6px;
+}
+
+.adder {
+    border: 4px solid #02CC67;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.adder:hover {
+    background-color: rgb(250, 250, 250);
+    transition: .5s;
+}
+
+.adder:active {
+    box-shadow: 10px 10px 10px rgb(232, 232, 232);
+}
+
+.avatar {
+    box-shadow: 5px 5px 5px rgb(232, 232, 232);
+}
