@@ -54,17 +54,46 @@ function Gallery() {
     }
   }
 
+  async function handleRefreshClick(key: number) {
+    try {
+      const res = await fetch('https://tinyfac.es/api/data?limit=1&quality=0');
+      const data = await res.json();
+      if (!data) {
+        throw new Error('data cannot be parsed');
+      }
+      const avatar: Avatar = { id: data[0].id, url: data[0].url };
+      setAvatars(avatars.map(a => {
+        if (a.id === key) {
+          return avatar;
+        }
+        return a;
+      }));
+    } catch (e) {
+      console.log('an error occured');
+    }
+  }
+
   return (
     <div className={styles.gallery}>
       {avatars.map((avatar) => 
-        <Image
-          src={avatar.url}
-          width={240}
-          height={240}
-          alt="avatar"
-          key={avatar.id}
-          className={`${styles.avatar} ${styles.tile}`}
-        />
+        <div className={styles['image-container']} key={avatar.id} onClick={() => handleRefreshClick(avatar.id)}>
+          <Image
+            src={avatar.url}
+            width={240}
+            height={240}
+            alt="avatar"
+            className={`${styles.avatar} ${styles.tile}`}
+          />
+          <button className={styles['refresh-btn']}>
+            <Image
+              src="/refresh.svg"
+              width={100}
+              height={104}
+              alt="refresh image"
+              className={styles['refresh-btn__img']}
+            />
+          </button> 
+        </div>
       )}
       <Adder onAdderClick={handleAdderClick}/>
     </div>
