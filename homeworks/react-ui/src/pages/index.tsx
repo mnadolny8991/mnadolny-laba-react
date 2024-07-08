@@ -27,6 +27,7 @@ function Adder(props: { onAdderClick: () => void }) {
         width={70}
         height={70}
         alt="add sign"
+        className={styles['adder__img']}
       />
     </button>
   );
@@ -95,24 +96,7 @@ function Gallery() {
   return (
     <div className={styles.gallery}>
       {avatars.map((avatar) => 
-        <div className={styles['image-container']} key={avatar.id} onClick={() => handleRefreshClick(avatar.id)}>
-          <Image
-            src={avatar.url}
-            width={240}
-            height={240}
-            alt="avatar"
-            className={`${styles.avatar} ${styles.tile}`}
-          />
-          <button className={styles['refresh-btn']}>
-            <Image
-              src="/refresh.svg"
-              width={100}
-              height={104}
-              alt="refresh image"
-              className={styles['refresh-btn__img']}
-            />
-          </button> 
-        </div>
+        <ImageContainer key={avatar.id} avatar={avatar} onRefreshClick={handleRefreshClick} />
       )}
       <Adder onAdderClick={handleAdderClick}/>
       <button className={styles['refresh-all-btn']} onClick={handleRefreshAllClick}>
@@ -120,4 +104,31 @@ function Gallery() {
       </button>
     </div>
   )
+}
+
+function ImageContainer({ avatar, onRefreshClick}: 
+  { 
+    avatar: Avatar, 
+    onRefreshClick: (id: number) => void
+  }) {
+  return (
+    <div className={styles['image-container']} onClick={() => onRefreshClick(avatar.id)}>
+      <Image
+        src={avatar.url}
+        width={240}
+        height={240}
+        alt="avatar"
+        className={`${styles.avatar} ${styles.tile}`}
+      />
+      <button className={styles['refresh-btn']}>
+        <Image
+          src="/refresh.svg"
+          width={100}
+          height={104}
+          alt="refresh image"
+          className={styles['refresh-btn__img']}
+        />
+      </button> 
+    </div>
+  );
 }
