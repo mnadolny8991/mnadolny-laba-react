@@ -37,17 +37,28 @@ interface Avatar {
   url: string;
 }
 
+// batchSize introduced in order to lower the ammount of requests to the server when looking for the unique avatar
+async function getUniqueAvatar(avatars: Array<Avatar>, batchSize: number = 10) {
+  while (true) {
+    const res = await fetch(`https://tinyfac.es/api/data?limit=${batchSize}&quality=0`);
+    const data = await res.json();
+    if (!data) {
+      throw new Error('data cannot be parsed');
+    }
+    for (const av of data) {
+      if (!avatars.find(a => a.id === av.id)) {
+        return av;
+      }
+    }
+  }
+}
+
 function Gallery() {
   const [avatars, setAvatars] = useState(new Array<Avatar>(0));
 
   async function handleAdderClick() {
     try {
-      const res = await fetch('https://tinyfac.es/api/data?limit=1&quality=0');
-      const data = await res.json();
-      if (!data) {
-        throw new Error('data cannot be parsed');
-      }
-      const avatar: Avatar = { id: data[0].id, url: data[0].url };
+      const avatar = await getUniqueAvatar(avatars);
       setAvatars([...avatars, avatar]);
     } catch (e) {
       console.log('an error occured');
@@ -56,18 +67,26 @@ function Gallery() {
 
   async function handleRefreshClick(key: number) {
     try {
-      const res = await fetch('https://tinyfac.es/api/data?limit=1&quality=0');
-      const data = await res.json();
-      if (!data) {
-        throw new Error('data cannot be parsed');
-      }
-      const avatar: Avatar = { id: data[0].id, url: data[0].url };
+      const avatar: Avatar = await getUniqueAvatar(avatars);
       setAvatars(avatars.map(a => {
         if (a.id === key) {
           return avatar;
         }
         return a;
       }));
+    } catch (e) {
+      console.log('an error occured');
+    }
+  }
+
+  async function handleRefreshAllClick() {
+    try {
+      const res = await fetch(`https://tinyfac.es/api/data?limit=${avatars.length}&quality=0`);
+      const data = await res.json();
+      if (!data) {
+        throw new Error('data cannot be parsed');
+      }
+      setAvatars(data);
     } catch (e) {
       console.log('an error occured');
     }
@@ -96,6 +115,9 @@ function Gallery() {
         </div>
       )}
       <Adder onAdderClick={handleAdderClick}/>
+      <button className={styles['refresh-all-btn']} onClick={handleRefreshAllClick}>
+        Refresh All
+      </button>
     </div>
   )
 }

@@ -25,7 +25,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-
+    background-color: white;
 }
 
 .avatar {
@@ -66,4 +66,22 @@
 
 .image-container:hover .avatar {
     filter: brightness(70%);
+}
+
+.refresh-all-btn {
+    all: unset;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 26.42px;
+    width: 240px;
+    height: 40px;
+    background-color: #02CC67;
+    text-align: center;
+    color: #FFF;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 64px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
 }
