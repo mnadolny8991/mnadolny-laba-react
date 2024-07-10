@@ -18,27 +18,31 @@ export default function Home() {
 }
 
 function TodoApp() {
+  const [tasks, setTasks] = useState(new Array<string>());
+
+  function handleTaskSubmit(taskDescription: string) {
+    setTasks([taskDescription, ...tasks]);
+  }
+
   return (
     <main className={styles['main']}>
       <div className={styles['task-manager']}>
-        <TaskForm />
+        <TaskForm onTaskSubmit={(desc: string) => handleTaskSubmit(desc)}/>
         <ul className={styles['task-list']}>
-          <li><Task taskDescription="Do the loundary"/></li>
-          <li><Task taskDescription="Do the loundary"/></li>
-          <li><Task taskDescription="Do the loundary"/></li>
-          <li><Task taskDescription="Do the loundary"/></li>
-          <li><Task taskDescription="Do the loundary"/></li>
+          {tasks.map(t => <Task taskDescription={t} />)}
         </ul>
       </div>
     </main>
   );
 }
 
-function TaskForm() {
+function TaskForm({ onTaskSubmit }: { onTaskSubmit: (desc: string) => void }) {
   const [task, setTask] = useState('');
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    onTaskSubmit(task);
+    setTask('');
   }
 
   return (
