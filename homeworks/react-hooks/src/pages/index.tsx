@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
 import { FormEvent, useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Home() {
   return (
@@ -17,19 +18,30 @@ export default function Home() {
   );
 }
 
+interface Task {
+  description: string,
+  id: string
+}
+
 function TodoApp() {
-  const [tasks, setTasks] = useState(new Array<string>());
+  const [tasks, setTasks] = useState(new Array<Task>());
 
   function handleTaskSubmit(taskDescription: string) {
-    setTasks([taskDescription, ...tasks]);
+    setTasks([{ description: taskDescription, id: uuidv4() }, ...tasks]);
   }
+
+  function handleTaskDelete(id: string) {
+    setTasks(tasks.filter(t => t.id !== id));
+  } 
 
   return (
     <main className={styles['main']}>
       <div className={styles['task-manager']}>
         <TaskForm onTaskSubmit={(desc: string) => handleTaskSubmit(desc)}/>
         <ul className={styles['task-list']}>
-          {tasks.map(t => <Task taskDescription={t} />)}
+          {tasks.map(t => 
+            <Task key={t.id} taskDescription={t.description} onTaskDelete={() => handleTaskDelete(t.id)}/>
+          )}
         </ul>
       </div>
     </main>
@@ -64,7 +76,7 @@ function TaskForm({ onTaskSubmit }: { onTaskSubmit: (desc: string) => void }) {
   );
 }
 
-function Task({ taskDescription }: { taskDescription: string }) {
+function Task({ taskDescription, onTaskDelete }: { taskDescription: string, onTaskDelete: () => void }) {
   const [disabled, setDisabled] = useState(true);
 
   return (
@@ -83,13 +95,13 @@ function Task({ taskDescription }: { taskDescription: string }) {
           alt="write image"
         />
       </button>
-      <button className={styles['task__btn']}>
-      <Image
-        width={59.38}
-        height={65}
-        src="/delete.svg"
-        alt="write image"
-      />
+      <button className={styles['task__btn']} onClick={onTaskDelete}>
+        <Image
+          width={59.38}
+          height={65}
+          src="/delete.svg"
+          alt="write image"
+        />
       </button>
     </div>
   );
