@@ -47,6 +47,7 @@
 .task__input:disabled {
   background-color: #e6edfc;
   border: none;
+  overflow-x: scroll;
 }
 
 .task__btn {

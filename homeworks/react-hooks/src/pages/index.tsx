@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
-import { FormEvent, MutableRefObject, useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 export default function Home() {
@@ -26,16 +26,32 @@ interface Task {
 function TodoApp() {
   const [tasks, setTasks] = useState(new Array<Task>());
 
+  useEffect(() => {
+    const loadedTasks = [];
+    for (const key of Object.keys(localStorage)) {
+      if (key !== 'ally-supports-cache') {
+        const desc = localStorage.getItem(key);
+        if (desc)
+          loadedTasks.push({ id: key, description: desc} );
+      }
+    }
+    setTasks(loadedTasks);
+  }, []);
+
   function handleTaskSubmit(taskDescription: string) {
-    setTasks([{ description: taskDescription, id: uuidv4() }, ...tasks]);
+    const id = uuidv4();
+    setTasks([{ description: taskDescription, id }, ...tasks]);
+    localStorage.setItem(id, taskDescription);
   }
 
   function handleTaskDelete(id: string) {
     setTasks(tasks.filter(t => t.id !== id));
+    localStorage.removeItem(id);
   } 
 
   function handleTaskChange(id: string, newDescription: string) {
     setTasks(tasks.map(t => t.id === id ? { id: id, description: newDescription } : t));
+    localStorage.setItem(id, newDescription);
   }
 
   return (
@@ -76,7 +92,8 @@ function TaskForm({ onTaskSubmit }: { onTaskSubmit: (desc: string) => void }) {
           value={task}
           onChange={(e) => setTask(e.target.value)}
           className={styles['task-input__input']}
-          required>
+          required
+          maxLength={30}>
         </input>
         <button className={styles['task-input__btn']}>Add</button>
       </div>
@@ -94,8 +111,7 @@ function Task({ taskDescription, onTaskDelete, onTaskChange }:
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const curr = inputRef.current;
-    if (curr) curr.focus();
+    inputRef.current?.focus();
   }, [disabled]);
 
   return (
@@ -108,7 +124,8 @@ function Task({ taskDescription, onTaskDelete, onTaskChange }:
           onTaskChange(e.target.value);
         }}
         value={taskDescription}
-        ref={inputRef}>
+        ref={inputRef}
+        maxLength={30}>
       </input>
       <button className={styles['task__btn']} onClick={() => setDisabled(!disabled)}>
         <Image
