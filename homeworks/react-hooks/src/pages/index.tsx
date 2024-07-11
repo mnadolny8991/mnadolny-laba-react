@@ -34,13 +34,21 @@ function TodoApp() {
     setTasks(tasks.filter(t => t.id !== id));
   } 
 
+  function handleTaskChange(id: string, newDescription: string) {
+    setTasks(tasks.map(t => t.id === id ? { id: id, description: newDescription } : t));
+  }
+
   return (
     <main className={styles['main']}>
       <div className={styles['task-manager']}>
         <TaskForm onTaskSubmit={(desc: string) => handleTaskSubmit(desc)}/>
         <ul className={styles['task-list']}>
           {tasks.map(t => 
-            <Task key={t.id} taskDescription={t.description} onTaskDelete={() => handleTaskDelete(t.id)}/>
+            <Task 
+              key={t.id} 
+              taskDescription={t.description} 
+              onTaskDelete={() => handleTaskDelete(t.id)}
+              onTaskChange={(newDescription: string) => handleTaskChange(t.id, newDescription)}/>
           )}
         </ul>
       </div>
@@ -76,7 +84,12 @@ function TaskForm({ onTaskSubmit }: { onTaskSubmit: (desc: string) => void }) {
   );
 }
 
-function Task({ taskDescription, onTaskDelete }: { taskDescription: string, onTaskDelete: () => void }) {
+function Task({ taskDescription, onTaskDelete, onTaskChange }: 
+  { 
+    taskDescription: string, 
+    onTaskDelete: () => void, 
+    onTaskChange: (newDescription: string) => void 
+  }) {
   const [disabled, setDisabled] = useState(true);
 
   return (
@@ -85,6 +98,7 @@ function Task({ taskDescription, onTaskDelete }: { taskDescription: string, onTa
         type="text" 
         disabled={disabled} 
         className={styles['task__input']}
+        onChange={(e: any) => onTaskChange(e.target.value)}
         value={taskDescription}>
       </input>
       <button className={styles['task__btn']} onClick={() => setDisabled(!disabled)}>
