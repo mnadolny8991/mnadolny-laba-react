@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
-import { FormEvent, useState } from "react";
+import { FormEvent, MutableRefObject, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 export default function Home() {
@@ -91,6 +91,12 @@ function Task({ taskDescription, onTaskDelete, onTaskChange }:
     onTaskChange: (newDescription: string) => void 
   }) {
   const [disabled, setDisabled] = useState(true);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const curr = inputRef.current;
+    if (curr) curr.focus();
+  }, [disabled]);
 
   return (
     <div className={styles['task']}>
@@ -98,8 +104,11 @@ function Task({ taskDescription, onTaskDelete, onTaskChange }:
         type="text" 
         disabled={disabled} 
         className={styles['task__input']}
-        onChange={(e: any) => onTaskChange(e.target.value)}
-        value={taskDescription}>
+        onChange={(e: any) => {
+          onTaskChange(e.target.value);
+        }}
+        value={taskDescription}
+        ref={inputRef}>
       </input>
       <button className={styles['task__btn']} onClick={() => setDisabled(!disabled)}>
         <Image

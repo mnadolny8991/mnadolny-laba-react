@@ -41,10 +41,12 @@
   font-size: 32px;
   background-color: #ECF3FF;
   text-align: center;
+  border: 1px solid #5275A0;
 }
 
 .task__input:disabled {
   background-color: #e6edfc;
+  border: none;
 }
 
 .task__btn {
