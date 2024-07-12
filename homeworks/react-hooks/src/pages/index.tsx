@@ -20,6 +20,7 @@ export default function Home() {
 
 interface Task {
   description: string,
+  done: boolean,
   id: string
 }
 
@@ -27,31 +28,42 @@ function TodoApp() {
   const [tasks, setTasks] = useState(new Array<Task>());
 
   useEffect(() => {
-    const loadedTasks = [];
-    for (const key of Object.keys(localStorage)) {
-      if (key !== 'ally-supports-cache') {
-        const desc = localStorage.getItem(key);
-        if (desc)
-          loadedTasks.push({ id: key, description: desc} );
-      }
-    }
-    setTasks(loadedTasks);
+    // const loadedTasks = [];
+    // for (const key of Object.keys(localStorage)) {
+    //   if (key !== 'ally-supports-cache') {
+    //     const desc = localStorage.getItem(key);
+    //     if (desc)
+    //       loadedTasks.push({ id: key, description: desc} );
+    //   }
+    // }
+    // setTasks(loadedTasks);
+    const tasksStr = localStorage.getItem('tasks');
+    if (!tasksStr) return;
+    const data: Array<Task> = JSON.parse(tasksStr);
+    setTasks(data);
   }, []);
 
   function handleTaskSubmit(taskDescription: string) {
+    // const id = uuidv4();
+    // setTasks([{ description: taskDescription, id }, ...tasks]);
+    // localStorage.setItem(id, taskDescription);
     const id = uuidv4();
-    setTasks([{ description: taskDescription, id }, ...tasks]);
-    localStorage.setItem(id, taskDescription);
+    const task: Task = { description: taskDescription, id, done: false };
+    const newTasks = [task, ...tasks];
+    setTasks([task, ...tasks]);
+    localStorage.setItem('tasks', JSON.stringify(newTasks));
   }
 
   function handleTaskDelete(id: string) {
-    setTasks(tasks.filter(t => t.id !== id));
-    localStorage.removeItem(id);
+    const newTasks = tasks.filter(t => t.id !== id);
+    setTasks(newTasks);
+    localStorage.setItem('tasks', JSON.stringify(newTasks));
   } 
 
   function handleTaskChange(id: string, newDescription: string) {
-    setTasks(tasks.map(t => t.id === id ? { id: id, description: newDescription } : t));
-    localStorage.setItem(id, newDescription);
+    const newTasks = tasks.map(t => t.id === id ? { id: id, description: newDescription, done: t.done } : t);
+    setTasks(newTasks);
+    localStorage.setItem('tasks', JSON.stringify(newTasks));
   }
 
   return (

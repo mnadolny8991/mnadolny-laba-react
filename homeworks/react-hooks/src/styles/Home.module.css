@@ -50,6 +50,11 @@
   overflow-x: scroll;
 }
 
+.task__input:hover {
+  text-decoration: line-through;
+  cursor: pointer;
+}
+
 .task__btn {
   all: unset;
   cursor: pointer;
