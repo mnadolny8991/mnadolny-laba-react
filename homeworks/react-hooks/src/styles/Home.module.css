@@ -44,6 +44,10 @@
   border: 1px solid #5275A0;
 }
 
+.task__input_done {
+  text-decoration: line-through;
+}
+
 .task__input:disabled {
   background-color: #e6edfc;
   border: none;
@@ -51,7 +55,6 @@
 }
 
 .task__input:hover {
-  text-decoration: line-through;
   cursor: pointer;
 }
 
@@ -74,4 +77,9 @@
   display: flex;
   flex-direction: column;
   gap: 47px;
+}
+
+.complete-checkbox {
+  display: flex;
+  gap: 3px;
 }
