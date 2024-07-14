@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useReducer, useRef, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 export default function Home() {
@@ -24,40 +24,78 @@ interface Task {
   id: string
 }
 
+enum ActionType {
+  LOAD,
+  SUBMIT,
+  DELETE,
+  CHANGE,
+  SET_DONE
+}
+
+type Action = {
+  type: ActionType,
+  id ?: string,
+  taskDescription ?: string,
+  done ?: boolean
+}
+
+function taskReducer(tasks: Task[], action: Action): Task[] {
+  switch (action.type) {
+    case ActionType.LOAD: {
+      const tasksStr = localStorage.getItem('tasks');
+      if (!tasksStr) return [];
+      const data: Array<Task> = JSON.parse(tasksStr);
+      return data;
+    }
+    case ActionType.SUBMIT: {
+      const id = uuidv4();
+      const task: Task = { description: action.taskDescription!, id, done: false };
+      const newTasks = [task, ...tasks];
+      localStorage.setItem('tasks', JSON.stringify(newTasks));
+      return newTasks;
+    }
+    case ActionType.DELETE: {
+      const newTasks = tasks.filter(t => t.id !== action.id);
+      localStorage.setItem('tasks', JSON.stringify(newTasks));
+      return newTasks;
+    }
+    case ActionType.CHANGE: {
+      const newTasks = tasks.map(t => t.id === action.id ? { id: action.id!, description: action.taskDescription!, done: false } : t);
+      localStorage.setItem('tasks', JSON.stringify(newTasks));
+      return newTasks;
+    }
+    case ActionType.SET_DONE: {
+      const newTasks = tasks.map(t => t.id === action.id ? { id: action.id!, description: t.description, done: action.done! } : t);
+      localStorage.setItem('tasks', JSON.stringify(newTasks));
+      return newTasks;
+    }
+    default:
+      return tasks;
+  }
+}
+
 function TodoApp() {
-  const [tasks, setTasks] = useState(new Array<Task>());
+  // const [tasks, setTasks] = useState(new Array<Task>());
+  const [tasks, dispatch] = useReducer(taskReducer, new Array<Task>())
 
   useEffect(() => {
-    const tasksStr = localStorage.getItem('tasks');
-    if (!tasksStr) return;
-    const data: Array<Task> = JSON.parse(tasksStr);
-    setTasks(data);
+    dispatch({ type: ActionType.LOAD });
   }, []);
 
   function handleTaskSubmit(taskDescription: string) {
-    const id = uuidv4();
-    const task: Task = { description: taskDescription, id, done: false };
-    const newTasks = [task, ...tasks];
-    setTasks([task, ...tasks]);
-    localStorage.setItem('tasks', JSON.stringify(newTasks));
+    dispatch({ type: ActionType.SUBMIT, taskDescription });
   }
 
   function handleTaskDelete(id: string) {
-    const newTasks = tasks.filter(t => t.id !== id);
-    setTasks(newTasks);
-    localStorage.setItem('tasks', JSON.stringify(newTasks));
+    dispatch({ type: ActionType.DELETE, id });
   } 
 
   function handleTaskChange(id: string, newDescription: string) {
-    const newTasks = tasks.map(t => t.id === id ? { id: id, description: newDescription, done: false } : t);
-    setTasks(newTasks);
-    localStorage.setItem('tasks', JSON.stringify(newTasks));
+    dispatch({ type: ActionType.CHANGE, id, taskDescription: newDescription });
   }
 
   function handleTaskDone(id: string, done: boolean) {
-    const newTasks = tasks.map(t => t.id === id ? { id: id, description: t.description, done } : t);
-    setTasks(newTasks);
-    localStorage.setItem('tasks', JSON.stringify(newTasks));
+    dispatch({ type: ActionType.SET_DONE, id, done });
   }
 
   return (
