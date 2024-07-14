@@ -120,11 +120,13 @@ function TodoApp() {
 
 function TaskForm({ onTaskSubmit }: { onTaskSubmit: (desc: string) => void }) {
   const [task, setTask] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     onTaskSubmit(task);
     setTask('');
+    inputRef.current?.focus();
   }
 
   return (
@@ -139,7 +141,8 @@ function TaskForm({ onTaskSubmit }: { onTaskSubmit: (desc: string) => void }) {
           onChange={(e) => setTask(e.target.value)}
           className={styles['task-input__input']}
           required
-          maxLength={30}>
+          maxLength={30}
+          ref={inputRef}>
         </input>
         <button className={styles['task-input__btn']}>Add</button>
       </div>
@@ -157,10 +160,6 @@ function Task({ taskDescription, taskDone, onTaskDelete, onTaskChange, onTaskDon
   }) {
   const [disabled, setDisabled] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-
-  }, []);
 
   useEffect(() => {
     inputRef.current?.focus();
