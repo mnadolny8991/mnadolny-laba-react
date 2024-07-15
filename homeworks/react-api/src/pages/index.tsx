@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { TodoProvider } from './TodoProvider';
+import { TodoProvider } from './TodoContext';
 import { TodoApp } from './TodoApp';
 
 export default function Home() {

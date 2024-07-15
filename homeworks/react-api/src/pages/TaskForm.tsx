@@ -1,13 +1,13 @@
 import { FormEvent, useContext, useRef, useState } from "react";
 import { ActionType } from './types';
 import styles from "@/styles/Home.module.css";
-import { TodoContext } from './TodoContext';
+import { useTodoContext } from './TodoContext';
 import { useValidation } from './useValidation';
 
 export function TaskForm() {
   const [task, setTask] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
-  const context = useContext(TodoContext);
+  const context = useTodoContext();
   const [error, validate] = useValidation({ task });
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {

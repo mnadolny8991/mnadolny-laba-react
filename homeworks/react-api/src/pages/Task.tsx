@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import styles from '@/styles/Home.module.css';
 import Image from "next/image";
 import { useValidation } from "./useValidation";
-import { TodoContext } from "./TodoContext";
+import { useTodoContext } from './TodoContext';
 import { ActionType } from "./types";
 
 export function Task({ taskDescription, taskDone, id }:
@@ -15,7 +15,7 @@ export function Task({ taskDescription, taskDone, id }:
   const inputRef = useRef<HTMLInputElement>(null);
   const [task, setTask] = useState(taskDescription);
   const [error, validate] = useValidation({ task });
-  const context = useContext(TodoContext);
+  const context = useTodoContext();
 
   useEffect(() => {
     inputRef.current?.focus();

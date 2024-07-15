@@ -1,12 +1,12 @@
 import { useContext, useEffect } from "react";
-import { TodoContext } from "./TodoContext";
+import { useTodoContext } from './TodoContext';
 import { ActionType } from "./types";
 import styles from "@/styles/Home.module.css";
 import { TaskForm } from './TaskForm';
 import { Task } from './Task';
 
 export function TodoApp() {
-  const context = useContext(TodoContext);
+  const context = useTodoContext();
 
   useEffect(() => {
     context?.dispatch({ type: ActionType.LOAD });
