@@ -1,20 +1,21 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styles from '@/styles/Home.module.css';
 import Image from "next/image";
 import { useValidation } from "./useValidation";
+import { TodoContext } from "./TodoContext";
+import { ActionType } from "./types";
 
-export function Task({ taskDescription, taskDone, onTaskDelete, onTaskChange, onTaskDone }:
+export function Task({ taskDescription, taskDone, id }:
   {
     taskDescription: string,
     taskDone: boolean,
-    onTaskDelete: () => void,
-    onTaskChange: (newDescription: string) => void,
-    onTaskDone: (done: boolean) => void
+    id: string
   }) {
   const [disabled, setDisabled] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
   const [task, setTask] = useState(taskDescription);
   const [error, validate] = useValidation({ task });
+  const context = useContext(TodoContext);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -25,7 +26,7 @@ export function Task({ taskDescription, taskDone, onTaskDelete, onTaskChange, on
       <div className={styles['complete-checkbox']}>
         <input type="checkbox" id="completed" checked={taskDone} onChange={(e: any) => {
           const checked = e.target.checked;
-          onTaskDone(checked);
+          context?.dispatch({ type: ActionType.SET_DONE, id: id, taskDescription: taskDescription, done: checked });
         }}></input>
         <label htmlFor="completed">Mark as Completed</label>
       </div>
@@ -52,7 +53,7 @@ export function Task({ taskDescription, taskDone, onTaskDelete, onTaskChange, on
             inputRef.current?.focus();
             return;
           }
-          onTaskChange(task);
+          context?.dispatch({ type: ActionType.CHANGE, id: id, taskDescription: task });
           setDisabled(!disabled);
         }}>
           <Image
@@ -62,7 +63,7 @@ export function Task({ taskDescription, taskDone, onTaskDelete, onTaskChange, on
             alt="write image"
           />
         </button>
-        <button className={styles['task__btn']} onClick={onTaskDelete}>
+        <button className={styles['task__btn']} onClick={() => context?.dispatch({ type: ActionType.DELETE, id: id })}>
           <Image
             width={59.38}
             height={65}

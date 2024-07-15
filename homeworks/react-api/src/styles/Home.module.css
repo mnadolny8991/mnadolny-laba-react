@@ -87,10 +87,8 @@
 .error {
   width: 676px;
   height: 30px;
-  text-align: center;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 88px;
   color: rgb(150, 3, 3);
 }
