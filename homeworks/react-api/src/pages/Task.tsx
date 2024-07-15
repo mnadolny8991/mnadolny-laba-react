@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styles from '@/styles/Home.module.css';
 import Image from "next/image";
+import { useValidation } from "./useValidation";
 
 export function Task({ taskDescription, taskDone, onTaskDelete, onTaskChange, onTaskDone }:
   {
@@ -12,6 +13,8 @@ export function Task({ taskDescription, taskDone, onTaskDelete, onTaskChange, on
   }) {
   const [disabled, setDisabled] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [task, setTask] = useState(taskDescription);
+  const [error, validate] = useValidation({ task });
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -27,18 +30,31 @@ export function Task({ taskDescription, taskDone, onTaskDelete, onTaskChange, on
         <label htmlFor="completed">Mark as Completed</label>
       </div>
       <div className={styles['task']}>
+        {disabled ? 
         <input
           type="text"
           disabled={disabled}
           className={`${styles['task__input']} ${taskDone && styles['task__input_done']}`}
-          onChange={(e: any) => {
-            onTaskChange(e.target.value);
-          }}
-          value={taskDescription}
+          value={taskDescription}>
+        </input> :
+        <input
+          type="text"
+          disabled={disabled}
+          className={`${styles['task__input']} ${taskDone && styles['task__input_done']}`}
+          onChange={(e: any) => setTask(e.target.value)}
+          value={task}
           ref={inputRef}
           maxLength={30}>
-        </input>
-        <button className={styles['task__btn']} onClick={() => setDisabled(!disabled)}>
+        </input>}
+        
+        <button className={styles['task__btn']} onClick={() => {
+          if (!validate()) {
+            inputRef.current?.focus();
+            return;
+          }
+          onTaskChange(task);
+          setDisabled(!disabled);
+        }}>
           <Image
             width={63.23}
             height={65}
@@ -55,6 +71,7 @@ export function Task({ taskDescription, taskDone, onTaskDelete, onTaskChange, on
           />
         </button>
       </div>
+      {error && <div className={styles['error']}>{error}</div>}
     </div>
   );
 }
