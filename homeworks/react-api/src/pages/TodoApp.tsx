@@ -1,29 +1,43 @@
-import { useContext, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTodoContext } from './TodoContext';
 import { ActionType } from "./types";
 import styles from "@/styles/Home.module.css";
 import { TaskForm } from './TaskForm';
 import { Task } from './Task';
+import { Search } from "./Search";
+import { useDebounce } from "./useDebounce";
 
 export function TodoApp() {
   const context = useTodoContext();
+  const [searchValue, setSearchValue] = useState<string>('');
+  // first custom hook
+  const searchValueDebounced = useDebounce(searchValue, 300);
 
   useEffect(() => {
     context?.dispatch({ type: ActionType.LOAD });
   }, []);
 
+  function handleSearchValueChange(e: any) {
+    setSearchValue(e.target.value);
+  }
+
+  const tasks = context?.tasks.map(t => {
+    if (t.description.includes(searchValueDebounced))
+      return (<Task
+        key={t.id}
+        id={t.id}
+        taskDescription={t.description}
+        taskDone={t.done} />
+      );
+  });
+
   return (
     <main className={styles['main']}>
       <div className={styles['task-manager']}>
         <TaskForm />
+        <Search onValueChange={handleSearchValueChange}/>
         <ul className={styles['task-list']}>
-          {context?.tasks.map(t =>
-            <Task
-              key={t.id}
-              id={t.id}
-              taskDescription={t.description}
-              taskDone={t.done} />
-          )}
+          {tasks}
         </ul>
         <button 
           className={styles['btn-remove']}

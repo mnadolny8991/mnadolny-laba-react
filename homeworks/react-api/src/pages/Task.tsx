@@ -14,7 +14,9 @@ export function Task({ taskDescription, taskDone, id }:
   const [disabled, setDisabled] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
   const [task, setTask] = useState(taskDescription);
+  // second custom hook
   const [error, validate] = useValidation({ task });
+  // third custom hook
   const context = useTodoContext();
 
   useEffect(() => {
