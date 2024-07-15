@@ -9,7 +9,8 @@ export enum ActionType {
     SUBMIT,
     DELETE,
     CHANGE,
-    SET_DONE
+    SET_DONE,
+    REMOVE_COMPLETED
 }
 
 export type Action = {

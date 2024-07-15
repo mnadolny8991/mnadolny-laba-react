@@ -92,3 +92,19 @@
   align-items: center;
   color: rgb(150, 3, 3);
 }
+
+.btn-remove {
+  all: unset;
+  text-align: center;
+  width: 200px;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #5275A0;
+  position: fixed;
+  width: 244px;
+  height: 40px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}

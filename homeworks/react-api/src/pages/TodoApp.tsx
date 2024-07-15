@@ -22,9 +22,14 @@ export function TodoApp() {
               key={t.id}
               id={t.id}
               taskDescription={t.description}
-              taskDone={t.done}></Task>
+              taskDone={t.done} />
           )}
         </ul>
+        <button 
+          className={styles['btn-remove']}
+          onClick={() => context?.dispatch({ type: ActionType.REMOVE_COMPLETED })}>
+          Remove Completed
+        </button>
       </div>
     </main>
   );

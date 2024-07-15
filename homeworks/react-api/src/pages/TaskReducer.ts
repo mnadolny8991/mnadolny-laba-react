@@ -31,6 +31,11 @@ export function taskReducer(tasks: Task[], action: Action): Task[] {
       localStorage.setItem('tasks', JSON.stringify(newTasks));
       return newTasks;
     }
+    case ActionType.REMOVE_COMPLETED: {
+      const newTasks = tasks.filter(t => !t.done);
+      localStorage.setItem('tasks', JSON.stringify(newTasks));
+      return newTasks;
+    }
     default:
       return tasks;
   }
