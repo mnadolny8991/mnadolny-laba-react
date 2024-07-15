@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from '@/styles/Home.module.css';
 import Image from "next/image";
 import { useValidation } from "./useValidation";

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useTodoContext } from './TodoContext';
 import { ActionType } from "./types";
 import styles from "@/styles/Home.module.css";
@@ -10,7 +10,7 @@ import { useDebounce } from "./useDebounce";
 export function TodoApp() {
   const context = useTodoContext();
   const [searchValue, setSearchValue] = useState<string>('');
-  // first custom hook
+  // first custom
   const searchValueDebounced = useDebounce(searchValue, 300);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export function TodoApp() {
     setSearchValue(e.target.value);
   }
 
-  const tasks = context?.tasks.map(t => {
+  const tasks = useMemo(() => context?.tasks.map(t => {
     if (t.description.includes(searchValueDebounced))
       return (<Task
         key={t.id}
@@ -29,7 +29,7 @@ export function TodoApp() {
         taskDescription={t.description}
         taskDone={t.done} />
       );
-  });
+  }), [context?.tasks, searchValueDebounced]);
 
   return (
     <main className={styles['main']}>
