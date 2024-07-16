@@ -1,0 +1,40 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.head {
+    width: 120px;
+    height: 378px;
+    border-radius: 40px;
+    background-color: #414447;
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+.container {
+    width: 240px;
+    height: 560px;
+    border-radius: 60px;
+    background-color: #585F68;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    box-shadow: inset 24px 0 #0000001A, 6px 6px 10px #00000040;
+}
+
+.light {
+    width: 120px;
+    height: 120px;
+    background-color: #5B5B5B;
+    border-radius: 60px;
+    box-shadow: inset 10px 0 #0000001A;
+}
