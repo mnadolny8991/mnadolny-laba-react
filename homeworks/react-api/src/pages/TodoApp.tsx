@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { useTodoContext } from './TodoContext';
 import { ActionType } from "./types";
 import styles from "@/styles/Home.module.css";
@@ -31,10 +31,14 @@ export function TodoApp() {
       );
   }), [context?.tasks, searchValueDebounced]);
 
+  const handleTaskSubmit = useCallback((desc: string) => {
+    context?.dispatch({ type: ActionType.SUBMIT, taskDescription: desc });
+  }, []);
+
   return (
     <main className={styles['main']}>
       <div className={styles['task-manager']}>
-        <TaskForm />
+        <TaskForm onTaskSubmit={handleTaskSubmit}/>
         <Search onValueChange={handleSearchValueChange}/>
         <ul className={styles['task-list']}>
           {tasks}

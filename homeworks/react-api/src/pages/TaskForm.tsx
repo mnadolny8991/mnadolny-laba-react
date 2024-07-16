@@ -1,24 +1,27 @@
-import { FormEvent, useContext, useRef, useState } from "react";
+import { FormEvent, memo, useRef, useState, useMemo, useEffect } from "react";
 import { ActionType } from './types';
 import styles from "@/styles/Home.module.css";
 import { useTodoContext } from './TodoContext';
 import { useValidation } from './useValidation';
 
-export function TaskForm() {
+export const TaskForm = memo(({ onTaskSubmit }: { onTaskSubmit: (desc: string) => void }) => {
   const [task, setTask] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
-  const context = useTodoContext();
   const [error, validate] = useValidation({ task });
+
+  useEffect(() => {
+    console.log('rerender');
+  });
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     inputRef.current?.focus();
     if (!validate()) return;
-    context?.dispatch({ type: ActionType.SUBMIT, taskDescription: task });
+    onTaskSubmit(task);
     setTask('');
   }
 
-  return (
+  return ( 
     <form onSubmit={(e) => handleSubmit(e)}>
       <div className={styles['task-input']}>
         <input
@@ -37,4 +40,5 @@ export function TaskForm() {
       {error && <div className={styles['error']}>{error}</div>}
     </form>
   );
-}
+});
+
