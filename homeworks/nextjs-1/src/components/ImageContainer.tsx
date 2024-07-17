@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { Avatar } from "@/types";
 import styles from "@/styles/Gallery.module.css";
 
-export function ImageContainer({ avatar, onRefreshClick}: 
+export default function ImageContainer({ avatar, onRefreshClick}: 
   { 
     avatar: Avatar, 
     onRefreshClick: (id: number) => void
@@ -10,7 +10,7 @@ export function ImageContainer({ avatar, onRefreshClick}:
   return (
     <div className={styles['image-container']} onClick={() => onRefreshClick(avatar.id)}>
       <Image
-        src={avatar.url}
+        src={avatar?.url}
         width={240}
         height={240}
         alt="avatar"

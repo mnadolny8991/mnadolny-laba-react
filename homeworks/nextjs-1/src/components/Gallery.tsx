@@ -1,10 +1,10 @@
 import { useState } from "react";
 import type { Avatar } from "@/types";
 import styles from "@/styles/Gallery.module.css";
-import { ImageContainer } from "./ImageContainer";
-import { Adder } from "./Adder";
+import ImageContainer from "./ImageContainer";
+import Adder from "./Adder";
 
-export function Gallery({ data }: { data: Array<Avatar> }) {
+export default function Gallery({ data }: { data: Array<Avatar> }) {
   const [avatars, setAvatars] = useState(data);
 
   async function handleAdderClick() {
@@ -19,7 +19,7 @@ export function Gallery({ data }: { data: Array<Avatar> }) {
   async function handleRefreshClick(key: number) {
     try {
       const avatar: Avatar = await getUniqueAvatar(avatars);
-      setAvatars(avatars.map(a => {
+      setAvatars(avatars?.map(a => {
         if (a.id === key) {
           return avatar;
         }
@@ -45,7 +45,7 @@ export function Gallery({ data }: { data: Array<Avatar> }) {
 
   return (
     <div className={styles.gallery}>
-      {avatars.map((avatar) => 
+      {avatars?.map((avatar) => 
         <ImageContainer key={avatar.id} avatar={avatar} onRefreshClick={handleRefreshClick} />
       )}
       <Adder onAdderClick={handleAdderClick}/>

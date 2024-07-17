@@ -1,7 +1,7 @@
 import styles from "@/styles/Gallery.module.css";
 import Image from "next/image";
 
-export function Adder(props: { onAdderClick: () => void }) {
+export default function Adder(props: { onAdderClick: () => void }) {
   return (
     <button className={`${styles.tile} ${styles.adder}`} onClick={props.onAdderClick}>
       <Image

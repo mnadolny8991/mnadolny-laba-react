@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from "@/styles/Gallery.module.css";
-import { Gallery } from "../Gallery";
+import Gallery from "@/components/Gallery"
 import { Avatar } from "@/types";
 
 export async function getServerSideProps() {
