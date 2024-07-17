@@ -4,8 +4,8 @@ import styles from "@/styles/Gallery.module.css";
 import { ImageContainer } from "./ImageContainer";
 import { Adder } from "./Adder";
 
-export function Gallery() {
-  const [avatars, setAvatars] = useState(new Array<Avatar>(0));
+export function Gallery({ data }: { data: Array<Avatar> }) {
+  const [avatars, setAvatars] = useState(data);
 
   async function handleAdderClick() {
     try {

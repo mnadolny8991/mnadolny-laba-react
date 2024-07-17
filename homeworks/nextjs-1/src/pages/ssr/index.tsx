@@ -1,8 +1,16 @@
 import Head from "next/head";
 import styles from "@/styles/Gallery.module.css";
-import { Gallery } from "./Gallery";
+import { Gallery } from "../Gallery";
+import { Avatar } from "@/types";
 
-export default function Home() {
+export async function getServerSideProps() {
+  const res = await fetch(`https://tinyfac.es/api/data?limit=${5}&quality=0`);
+  const data = await res.json();
+
+  return { props: { data } };
+}
+
+export default function Home({ data }: { data: Array<Avatar> }) {
   return (
     <>
       <Head>
@@ -12,7 +20,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Gallery data={[]}/>
+        <Gallery data={data}/>
       </main>
     </>
   );
