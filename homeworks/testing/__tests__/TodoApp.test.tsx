@@ -36,3 +36,24 @@ test('task deleted upon a delete click', () => {
   const tasks: HTMLInputElement[] = screen.getAllByTestId('task');
   expect(tasks.length).toBe(2);
 });
+
+test('tasks can me modified', () => {
+  render(<TodoApp />)
+  const formInputElem: HTMLInputElement = screen.getByTestId('task-input');
+  const inputElem: HTMLButtonElement = screen.getByTestId('task-add-btn');
+  for (let i = 0; i < 2; i++) {
+    fireEvent.change(formInputElem, { target: { value: `task_${i}` } } );  
+    fireEvent.click(inputElem);
+  }
+
+  const editButtons: HTMLButtonElement[] = screen.getAllByTestId('task-edit-btn');
+  const sndTaskEditBtn = editButtons[1];
+  fireEvent.click(sndTaskEditBtn);
+
+  const tasks: HTMLInputElement[] = screen.getAllByTestId('task');
+  const sndTask = tasks[1];
+  fireEvent.change(sndTask, { target: { value: 'invite your friends to bbq' }});
+  fireEvent.click(sndTaskEditBtn);
+
+  expect(sndTask.value).toBe('invite your friends to bbq');
+});
