@@ -19,3 +19,20 @@ test('new task is added upon add click', () => {
   const firstTask = tasks[0];
   expect(firstTask.value).toBe('write a killer app');
 });
+
+test('task deleted upon a delete click', () => {
+  render(<TodoApp />)
+  const formInputElem: HTMLInputElement = screen.getByTestId('task-input');
+  const inputElem: HTMLButtonElement = screen.getByTestId('task-add-btn');
+  for (let i = 0; i < 2; i++) {
+    fireEvent.change(formInputElem, { target: { value: `task_${i}` } } );  
+    fireEvent.click(inputElem);
+  }
+
+  const deleteButtons: HTMLButtonElement[] = screen.getAllByTestId('task-delete-btn');
+  const sndTaskDeleteBtn = deleteButtons[1];
+  fireEvent.click(sndTaskDeleteBtn);
+
+  const tasks: HTMLInputElement[] = screen.getAllByTestId('task');
+  expect(tasks.length).toBe(2);
+});

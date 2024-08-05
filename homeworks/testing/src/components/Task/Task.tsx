@@ -51,7 +51,7 @@ export default function Task({ taskDescription, taskDone, onTaskDelete, onTaskCh
             alt="write image"
           />
         </button>
-        <button className={styles['task__btn']} onClick={onTaskDelete}>
+        <button className={styles['task__btn']} onClick={onTaskDelete} data-testid="task-delete-btn">
           <Image
             width={59.38}
             height={65}
