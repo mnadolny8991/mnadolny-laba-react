@@ -25,7 +25,7 @@ export default function TaskForm({ onTaskSubmit }: { onTaskSubmit: (desc: string
           required
           maxLength={30}>
         </input>
-        <button className={styles['task-input__btn']}>Add</button>
+        <button className={styles['task-input__btn']} data-testid="task-add-btn">Add</button>
       </div>
     </form>
   );

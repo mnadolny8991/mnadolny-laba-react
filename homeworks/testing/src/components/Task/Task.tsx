@@ -40,7 +40,8 @@ export default function Task({ taskDescription, taskDone, onTaskDelete, onTaskCh
           }}
           value={taskDescription}
           ref={inputRef}
-          maxLength={30}>
+          maxLength={30}
+          data-testid="task">
         </input>
         <button className={styles['task__btn']} onClick={() => setDisabled(!disabled)}>
           <Image
