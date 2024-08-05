@@ -14,6 +14,7 @@ export default function TaskForm({ onTaskSubmit }: { onTaskSubmit: (desc: string
     <form onSubmit={(e) => handleSubmit(e)}>
       <div className={styles['task-input']}>
         <input 
+          data-testid="task-input"
           type="text" 
           name="task" 
           id="task"
